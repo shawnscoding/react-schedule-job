@@ -6,7 +6,7 @@ React Schedule Job is a simple cron-like job scheduler for Reactjs. This module 
 
 **User Guide** at [https://d3ulnom5ytgqb7.cloudfront.net/index.html](https://d3ulnom5ytgqb7.cloudfront.net/index.html)
 
-![Crontab Guide Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/cronGuide.png)
+![Crontab Guide Demo](./assets/cronGuide.png)
 
 ## Getting Started
 
