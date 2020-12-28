@@ -4,9 +4,9 @@ React Schedule Job is a simple cron-like job scheduler for Reactjs. This module 
 
 [![NPM](https://img.shields.io/npm/v/react-schedule-job.svg)](https://www.npmjs.com/package/react-schedule-job) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-**User Guide** at [https://d180vcwahe2y6s.cloudfront.net/build/index.html](https://d180vcwahe2y6s.cloudfront.net/index.html)
+<!-- **User Guide** at [https://d180vcwahe2y6s.cloudfront.net/build/index.html](https://d180vcwahe2y6s.cloudfront.net/index.html)
 
-![Crontab Guide Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/cronGuide.png)
+![Crontab Guide Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/cronGuide.png) -->
 
 ## Getting Started
 
@@ -242,15 +242,6 @@ Schedule.defaultProps = {
 ## Important note
 
 - Note that Schedule is triggered only once per minute. The seconds that is triggered is different everytime you run your reactjs app. It varies from 0s to 59s. This is because we don't configure seconds. Thus, don't be surprised if it doesn't run as soon as the time condition met.
-
-## Breaking Changes in 4.0.0
-
-- The hyphon between values in config field has replaced by white space just like [linux crontab](https://www.geeksforgeeks.org/crontab-in-linux-with-examples)
-
-## tutorial
-
-- [Brief project based tutorial](https://shawnscoding.medium.com/the-easiest-way-to-automate-or-schedule-component-rendering-in-react-app-f4df7784e1ea)
-- [간단한 프로젝트 베이스 튜토리얼](https://shawnscoding.medium.com/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-e8c7c9198132)
 
 ## Supported browsers
 
