@@ -12,12 +12,12 @@ import {
 } from '../../../common/utils/utils'
 import { ASTERISK } from '../../../common/data/types'
 
-const addHrTime = (tasks) => {
-  if (!tasks.length) return []
-  const result = tasks.map((task) => {
+const addHrTime = (jobs) => {
+  if (!jobs.length) return []
+  const result = jobs.map((job) => {
     // let year = "2020";
-    const { config } = task
-    const splittedConfig = config.split(' ')
+    const { schedule } = job
+    const splittedConfig = schedule.split(' ')
     const convertedConfig = splittedConfig.map((item) => {
       const obj = converConfigValuesToObject(item)
       return obj
@@ -117,7 +117,7 @@ const addHrTime = (tasks) => {
     // const conditions = { min, hour, dom, mon, dow }
     // const res = getHRtime(hrTime, conditions)
 
-    return { ...task, hrTime }
+    return { ...job, hrTime }
   })
 
   return result
@@ -131,15 +131,15 @@ const handleFormatTz = (tz) => {
 }
 
 const Dashboard = (props) => {
-  const { tasks, timeZone } = useContext(BasicCronContext)
-  // console.log('tasks in Dashboard', tasks)
+  const { jobs, timeZone } = useContext(BasicCronContext)
+  // console.log('jobs in Dashboard', jobs)
   const now = getCurrentTime(timeZone)
 
   const currentDom = now.getDate()
   const Mon = now.getMonth() // beware: January = 0; February = 1, etc.
   const currentMon = Mon + 1
   const formattedMonth = formatMonthInDashboard(currentMon.toString())
-  const crons = addHrTime(tasks)
+  const crons = addHrTime(jobs)
   const tzText = handleFormatTz(timeZone)
   // console.log('crons :::')
   return (
@@ -161,9 +161,8 @@ const Dashboard = (props) => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Configuration</th>
             <th>Schedule</th>
-            <th>Description</th>
+            <th>Schedule (Human Readable)</th>
           </tr>
         </thead>
         {crons.length &&
@@ -172,9 +171,8 @@ const Dashboard = (props) => {
               <tr>
                 <td>{cron.id}</td>
                 <td>{cron.name}</td>
-                <td>{cron.config}</td>
+                <td>{cron.schedule}</td>
                 <td>{`${cron.hrTime} `}</td>
-                <td>{cron.description}</td>
               </tr>
             </tbody>
           ))}

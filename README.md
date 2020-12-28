@@ -1,6 +1,6 @@
 # react-schedule-job
 
-React Schedule Job is a simple cron-like job scheduler for Reactjs. This module allows you to schedule jobs like function trigger or component render in reactjs.
+React Schedule Job is a simple cron-like job scheduler for Reactjs. This module allows you to schedule jobs like triggering function or rendering component in reactjs.
 
 [![NPM](https://img.shields.io/npm/v/react-schedule-job.svg)](https://www.npmjs.com/package/react-schedule-job) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -16,8 +16,7 @@ npm install --save react-schedule-job
 
 ## Usage 1
 
-This is useful when you need to render component
-at particular time
+To schedule component, this code would be useful
 
 ```jsx
 import React from 'react'
@@ -43,23 +42,21 @@ const App = () => {
   }
   // this is the function which will run according to your settings
 
-  const tasks = [
+  const jobs = [
     {
       fn: sayHello,
       id: '1',
-      config: '* * * * *',
+      schedule: '* * * * *'
       // this runs every minutes
-      name: '',
-      description: ''
     }
   ]
 
   return (
     <div>
       <Schedule
-        tasks={tasks}
-        timeZone='local'
-        // timezone is PC local timezone.
+        jobs={jobs}
+        timeZone='UTC'
+        // "UTC", "local" or "YOUR PREFERRED TIMEZONE",
         dashboard={{
           hidden: false
           // if true, dashboard is hidden
@@ -73,13 +70,13 @@ const App = () => {
 export default App
 ```
 
-Copying and pasting above code will render '<HelloMsg />' if it's 08:00 like the screenshot below
+Copying and pasting above code will render `<HelloMsg /> `
 
 ![usage 2 demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/usage_2_demo.png)
 
 ## Usage 2
 
-This is useful when you need to implement some function like api call at particular time.
+To schedule function, this code would be useful
 
 ```jsx
 import React from 'react'
@@ -94,33 +91,31 @@ const RequestSomething = () => {
   console.log('Api request has been sent')
 }
 
-// these are the functions which will run according to the config
+// these are the functions which will run according to the schedule
 
-const tasks = [
+const jobs = [
   {
     fn: sayHello,
     id: '1',
-    config: '* * * * *',
+    schedule: '* * * * *',
     // Execute every minutes
-    name: 'Say Hello',
-    description: 'Say Hello on console'
+    name: 'Say Hello'
   },
   {
     fn: RequestSomething,
     id: '3',
-    config: '* 15,19 * 11,12 *',
+    schedule: '* 15,19 * 11,12 *',
     // Execute In November, December At 3PM and 7PM every minute
-    name: 'Request Something',
-    description: 'Send API'
+    name: 'Request Something'
   }
 ]
 
 const App = () => {
   return (
     <Schedule
-      tasks={tasks}
-      timeZone='UTC'
-      // timezone is UTC timezone.
+      jobs={jobs}
+      timeZone='Asia/Seoul'
+      // "UTC", "local" or "YOUR PREFERRED TIMEZONE",
       dashboard={{
         hidden: false
         // if true, dashboard is hidden
@@ -135,7 +130,7 @@ Copying and pasting above code will result something like this below
 
 ![Dashboard Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/dashboard.png)
 
-This will do what it says at the requested time(s).
+This will do what it says at the scheduled time.
 
 ## Features
 
@@ -195,11 +190,11 @@ MIN,MIN HOUR,HOUR DOM,DOM MON,MON DOW,DOW
 
 ```
 Schedule Props {
-  tasks: [
+  jobs: [
     {
       fn: yourFn,
       id: '1',
-      config: '* 11 18 10,13 *',
+      schedule: '* 11 18 10,13 *',
       name: 'logUserOut',
       description: 'Send API'
     }
@@ -214,11 +209,11 @@ Schedule Props {
 }
 
 Schedule.propTypes = {
-  tasks: PropTypes.arrayOf(
+  jobs: PropTypes.arrayOf(
     PropTypes.shape({
       fn: PropTypes.func.isRequired,
       id: PropTypes.string.isRequired,
-      config: PropTypes.string.isRequired,
+      schedule: PropTypes.string.isRequired,
       name: PropTypes.string,
       description: PropTypes.string
     })
@@ -230,7 +225,7 @@ Schedule.propTypes = {
 }
 
 Schedule.defaultProps = {
-  tasks: [],
+  jobs: [],
   dashboard: {
     hidden: false
   },
@@ -241,7 +236,7 @@ Schedule.defaultProps = {
 
 ## Important note
 
-- Note that Schedule is triggered only once per minute. The seconds that is triggered is different everytime you run your reactjs app. It varies from 0s to 59s. This is because we don't configure seconds. Thus, don't be surprised if it doesn't run as soon as the time condition met.
+- Note that Schedule is triggered only once per minute. The seconds that is triggered is different everytime you run your reactjs app. It varies from 0s to 59s. This is because we don't schedule seconds. Thus, don't be surprised if it doesn't run as soon as the time condition met.
 
 ## Supported browsers
 

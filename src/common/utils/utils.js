@@ -285,7 +285,7 @@ export const getHRtime = (hrTime, conditions, hourFormat) => {
     hrTime += `at ${hour}${hourFormat} every minute as long as it's ${dow} in ${mon}`
   } else {
     // there is 1 possibility I can't think of
-    throw Error('Sorry, something went wrong in config key of task object')
+    throw Error('Sorry, something went wrong in schedule key of job object')
   }
   // console.log('hrTime::', hrTime)
   return hrTime
@@ -313,7 +313,7 @@ export const formatMonth = (mon) => {
   if (typeof mon !== typeof {}) throw Error('Bad argument')
   const { value } = mon
 
-  const msg = `Bad config, month is required to be less than 13`
+  const msg = `Wrong date, month is required to be less than 13`
   const formatted = value.map((val) => {
     switch (val) {
       case '*':
@@ -384,7 +384,7 @@ export const formatMonthInDashboard = (val) => {
 
 export const formatDOW = (dow) => {
   if (typeof dow !== typeof {}) throw Error('Bad args')
-  const msg = 'Bad config, dow is required to be less than 8'
+  const msg = 'Wrong date, dow is required to be less than 8'
   const { value } = dow
   const formatted = value.map((val) => {
     switch (val) {
@@ -413,7 +413,7 @@ export const formatDOW = (dow) => {
 }
 
 export const formatDOWGudie = (dows) => {
-  const msg = `Bad config, month is required to be less than 13`
+  const msg = `Wrong date, month is required to be less than 13`
   const formatted = dows.map((value) => {
     switch (value) {
       case '1':

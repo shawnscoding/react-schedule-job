@@ -1,16 +1,16 @@
-const handleNoneExistField = (task, keys) => {
-  const { id, name, config, description, fn } = keys
+const handleNoneExistField = (job, keys) => {
+  const { id, name, schedule, description, fn } = keys
   //   is undedined if user didn't specify
-  if (!id || !config || !fn) {
-    throw Error('Id, Config, Fn are required fields in tasks props')
+  if (!id || !schedule || !fn) {
+    throw Error('Id, schedule, Fn are required fields in jobs props')
   }
   if (!name) {
-    task.name = '*'
+    job.name = '*'
   }
   if (!description) {
-    task.description = '*'
+    job.description = '*'
   }
-  return task
+  return job
 }
 
 const isFunction = (functionToCheck) => {
@@ -20,17 +20,17 @@ const isFunction = (functionToCheck) => {
 }
 
 export const validateValueTypes = (arr) => {
-  return arr.map((task) => {
+  return arr.map((job) => {
     const keysInObj = {}
 
-    for (const key in task) {
+    for (const key in job) {
       // throw error if value is not string
       if (key === 'fn') {
-        const isfn = isFunction(task[key])
+        const isfn = isFunction(job[key])
         if (!isfn) {
           throw Error('Type error in fn field')
         }
-      } else if (typeof task[key] === typeof '') {
+      } else if (typeof job[key] === typeof '') {
         // console.log(`field of ${key} is string`)
       } else {
         throw Error(`Type error in ${key} field`)
@@ -44,8 +44,8 @@ export const validateValueTypes = (arr) => {
       if (key === 'name') {
         keysInObj.name = true
       }
-      if (key === 'config') {
-        keysInObj.config = true
+      if (key === 'schedule') {
+        keysInObj.schedule = true
       }
       if (key === 'description') {
         keysInObj.description = true
@@ -55,7 +55,7 @@ export const validateValueTypes = (arr) => {
       }
     }
 
-    const res = handleNoneExistField(task, keysInObj)
+    const res = handleNoneExistField(job, keysInObj)
     return res
     // handle  nonexistent field
   })
@@ -67,7 +67,7 @@ export const validateConfigLength = (configArr) => {
     return { error: false, msg }
   }
   const leng = configArr.length
-  msg = `Bad format: Five values are required in config field but received ${leng.toString()}`
+  msg = `Wrong syntax: Five values are required in schedule field but received ${leng.toString()}`
   return { error: true, msg }
 }
 
@@ -76,7 +76,7 @@ export const isEmpty = (configArr) => {
 
   for (let i = 0; i < configArr.length; i++) {
     if (configArr[i] === '') {
-      msg = `Bad Config: Unnecessary white space`
+      msg = `Wrong syntax: Unnecessary white space in schdule field`
       return { error: true, msg }
     }
   }

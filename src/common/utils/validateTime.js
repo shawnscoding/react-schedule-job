@@ -34,7 +34,7 @@ export const validateMin = (min) => {
     // just one number
     const value = min.value[0]
     if (Number(value) > 59) {
-      msg = `Bad Config: minute is required to be less than 60`
+      msg = `Wrong Time config: minute is required to be less than 60`
       return { error: true, msg }
     }
   } else if (min.type === SEVERAL_NUMBERS) {
@@ -45,7 +45,7 @@ export const validateMin = (min) => {
       }
     })
     if (badConfig) {
-      msg = `Bad Config: minute is required to be less than 60`
+      msg = `Wrong Time config: minute is required to be less than 60`
       return { error: true, msg }
     }
   }
@@ -62,7 +62,7 @@ export const validateHour = (hour) => {
     // just one number
     const value = hour.value[0]
     if (Number(value) > 23) {
-      msg = `Bad Config: Hour is required to be less than 24`
+      msg = `Wrong time config: Hour is required to be less than 24`
       return { error: true, msg }
     }
   } else if (hour.type === SEVERAL_NUMBERS) {
@@ -73,7 +73,7 @@ export const validateHour = (hour) => {
       }
     })
     if (badConfig) {
-      msg = `Bad Config: Hour is required to be less than 24`
+      msg = `Wrong time config: Hour is required to be less than 24`
       return { error: true, msg }
     }
   }
@@ -91,7 +91,7 @@ export const validateDom = (dom) => {
     // just one number
     const value = dom.value[0]
     if (Number(value) > 31) {
-      msg = `Bad Config: DOM is required to be less than 32`
+      msg = `Wrong time config: DOM is required to be less than 32`
       return { error: true, msg }
     }
   } else if (dom.type === SEVERAL_NUMBERS) {
@@ -102,7 +102,7 @@ export const validateDom = (dom) => {
       }
     })
     if (badConfig) {
-      msg = `Bad Config: DOM is required to be less than 32`
+      msg = `Wrong time config: DOM is required to be less than 32`
       return { error: true, msg }
     }
   }
@@ -120,7 +120,7 @@ export const validateMon = (mon) => {
     // just one number
     const value = mon.value[0]
     if (Number(value) > 12) {
-      msg = `Bad Config: Month is required to be less than 13`
+      msg = `Wrong time config: Month is required to be less than 13`
       return { error: true, msg }
     }
   } else if (mon.type === SEVERAL_NUMBERS) {
@@ -133,7 +133,7 @@ export const validateMon = (mon) => {
     // console.log('badConfig ::', badConfig)
     // console.log('values ::', values)
     if (badConfig) {
-      msg = `Bad Config: Month is required to be less than 13`
+      msg = `Wrong time config: Month is required to be less than 13`
       return { error: true, msg }
     }
   }
@@ -151,7 +151,7 @@ export const validateDow = (dow) => {
     // just one number
     const value = dow.value[0]
     if (Number(value) > 7) {
-      msg = `Bad Config: DOW is required to be less than 8`
+      msg = `Wrong time config: DOW is required to be less than 8`
       return { error: true, msg }
     }
   } else if (dow.type === SEVERAL_NUMBERS) {
@@ -162,7 +162,7 @@ export const validateDow = (dow) => {
       }
     })
     if (badConfig) {
-      msg = `Bad Config: DOW is required to be less than 8`
+      msg = `Wrong time config: DOW is required to be less than 8`
       return { error: true, msg }
     }
   }

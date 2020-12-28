@@ -1,56 +1,45 @@
 import React from 'react'
-import Crontab from 'react-schedule-job'
+import Schedule from 'react-schedule-job'
 import 'react-schedule-job/dist/index.css'
 
-const styles = {
-  text: {
-    margin: '70px',
-    color: 'skyblue'
-  }
+const sayHello = () => {
+  console.log('Hello')
 }
 
-const HelloMsg = () => {
-  return <h1 style={styles.text}>Hello!</h1>
+const RequestSomething = () => {
+  console.log('Api request has been sent')
 }
+
+// these are the functions which will run according to the schedule
+
+const jobs = [
+  {
+    fn: sayHello,
+    id: '1',
+    schedule: '* * * * *',
+    // Execute every minutes
+    name: 'Say Hello'
+  },
+  {
+    fn: RequestSomething,
+    id: '3',
+    schedule: '* 16 * 11,12 *',
+    // Execute In November, December At 3PM and 7PM every minute
+    name: 'Request Something'
+  }
+]
 
 const App = () => {
-  const [open, setOpen] = React.useState(false)
-
-  const sayHello = () => {
-    setOpen(true)
-  }
-
-  const close = () => {
-    setOpen(false)
-  }
-  // this is the function which will run according to your settings
-
-  const tasks = [
-    {
-      fn: sayHello,
-      id: '1',
-      config: '* * * * *',
-      // this runs every minutes
-      name: '',
-      description: ''
-    }
-  ]
-
   return (
-    <div>
-      <button type="button" onClick={close}  >btn</button>
-      <Crontab
-        tasks={tasks}
-        timeZone='local'
-        // timezone is PC local timezone.
-        dashboard={{
-          hidden: false
-          // if true, dashboard is hidden
-        }}
-      />
-      {open && <HelloMsg />}
-    </div>
+    <Schedule
+      jobs={jobs}
+      timeZone='UTC'
+      // timezone is UTC timezone.
+      dashboard={{
+        hidden: false
+        // if true, dashboard is hidden
+      }}
+    />
   )
 }
-
 export default App

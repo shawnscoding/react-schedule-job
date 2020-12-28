@@ -86,9 +86,9 @@ const detectTaskTime = (convertedConfigArr, timeZone) => {
   return true
 }
 
-const handleSetTimer = (task, timeZone) => {
-  const { config } = task
-  const splittedConfig = config.split(' ')
+const handleSetTimer = (job, timeZone) => {
+  const { schedule } = job
+  const splittedConfig = schedule.split(' ')
   const res = validateConfigLength(splittedConfig)
   const resTwo = isEmpty(splittedConfig)
 
@@ -99,7 +99,7 @@ const handleSetTimer = (task, timeZone) => {
     throw Error(resTwo.msg)
   }
 
-  // console.log('config :::', config)
+  // console.log('schedule :::', schedule)
   // const utcTime = new Date(new Date().toUTCString().slice(0, -3))
   // console.log('utc::', utcTime)
 
@@ -109,7 +109,7 @@ const handleSetTimer = (task, timeZone) => {
   if (isNotAsterisk === undefined) {
     // means this is all *
     // console.log('isNotAsterisk ::', isNotAsterisk)
-    const { fn } = task
+    const { fn } = job
 
     fn()
     setInterval(() => {
@@ -117,7 +117,7 @@ const handleSetTimer = (task, timeZone) => {
     }, timerDuration)
   } else {
     // means there is something particular
-    // validate value in config field
+    // validate value in schedule field
     const convertedConfig = splittedConfig.map((item) => {
       const obj = converConfigValuesToObject(item)
 
@@ -153,7 +153,7 @@ const handleSetTimer = (task, timeZone) => {
       throw Error(msg)
     }
 
-    const { fn } = task
+    const { fn } = job
 
     const isNeededToRun = detectTaskTime(convertedConfig, timeZone)
     if (isNeededToRun) {
@@ -171,12 +171,12 @@ const handleSetTimer = (task, timeZone) => {
 }
 const BasicCronContext = createContext(null)
 
-const BasicCronProvider = ({ children, tasks, timeZone }) => {
+const BasicCronProvider = ({ children, jobs, timeZone }) => {
 
 
   useEffect(() => {
-    if (tasks.length) {
-      const validatedTasks = validateValueTypes(tasks)
+    if (jobs.length) {
+      const validatedTasks = validateValueTypes(jobs)
 
       for (const item of validatedTasks) {
         handleSetTimer(item, timeZone)
@@ -185,7 +185,7 @@ const BasicCronProvider = ({ children, tasks, timeZone }) => {
   }, [])
 
   const store = {
-    tasks,
+    jobs,
     timeZone
   }
   return (
@@ -196,7 +196,7 @@ const BasicCronProvider = ({ children, tasks, timeZone }) => {
 }
 
 BasicCronProvider.propTypes = {
-  tasks: PropTypes.array.isRequired,
+  jobs: PropTypes.array.isRequired,
   timeZone: PropTypes.string.isRequired
 }
 

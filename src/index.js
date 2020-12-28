@@ -5,30 +5,30 @@ import Dashboard from './components/basicCron/dashboard/Dashboard'
 import PropTypes from 'prop-types'
 
 
-const Cron = ({ timeZone, tasks, dashboard }) => {
+const Cron = ({ timeZone, jobs, dashboard }) => {
   const { hidden } = dashboard
 
   if (!hidden)
     return (
       <div className={styles.global}>
-        <BasicCronProvider timeZone={timeZone} tasks={tasks}>
+        <BasicCronProvider timeZone={timeZone} jobs={jobs}>
           <Dashboard />
         </BasicCronProvider>
       </div>
     )
   return (
     <div className={styles.global}>
-      <BasicCronProvider timeZone={timeZone} tasks={tasks} />
+      <BasicCronProvider timeZone={timeZone} jobs={jobs} />
     </div>
   )
 }
 
 Cron.propTypes = {
-  tasks: PropTypes.arrayOf(
+  jobs: PropTypes.arrayOf(
     PropTypes.shape({
       fn: PropTypes.func.isRequired,
       id: PropTypes.string.isRequired,
-      config: PropTypes.string.isRequired,
+      schedule: PropTypes.string.isRequired,
       name: PropTypes.string,
       description: PropTypes.string
     })
@@ -40,7 +40,7 @@ Cron.propTypes = {
 }
 
 Cron.defaultProps = {
-  tasks: [],
+  jobs: [],
   dashboard: {
     hidden: false
   },
