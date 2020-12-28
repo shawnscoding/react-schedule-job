@@ -1,45 +1,52 @@
 import React from 'react'
 import Schedule from 'react-schedule-job'
 import 'react-schedule-job/dist/index.css'
+//copy and paste this code and run!
+    
+const function_1 = () => {
+  console.log("called ! ")
+};
+  
+const function_2 = () => {
+  console.log("called ! ")
 
-const sayHello = () => {
-  console.log('Hello')
-}
+};
+  
+const function_3 = () => {
+  console.log("called ! 3")
 
-const RequestSomething = () => {
-  console.log('Api request has been sent')
-}
+};
+  
 
-// these are the functions which will run according to the schedule
-
+    
 const jobs = [
-  {
-    fn: sayHello,
-    id: '1',
-    schedule: '* * * * *',
-    // Execute every minutes
-    name: 'Say Hello'
-  },
-  {
-    fn: RequestSomething,
-    id: '3',
-    schedule: '* 16 * 11,12 *',
-    // Execute In November, December At 3PM and 7PM every minute
-    name: 'Request Something'
-  }
-]
-
+      {
+        fn: function_1,
+        id: '1',
+        schedule: '* * * * *',
+      }
+    ,
+      {
+        fn: function_2,
+        id: '2',
+        schedule: '* * * * *',
+      }
+    ,
+      {
+        fn: function_3,
+        id: '3',
+        schedule: '* * * 3,5 *',
+      }
+    ]
+    
 const App = () => {
-  return (
-    <Schedule
-      jobs={jobs}
-      timeZone='UTC'
-      // timezone is UTC timezone.
-      dashboard={{
-        hidden: false
-        // if true, dashboard is hidden
-      }}
-    />
-  )
+    return (
+      <Schedule 
+        jobs={jobs}
+        timeZone='UTC'
+        dashboard={{ hidden: false }}
+      />
+    )
 }
+    
 export default App

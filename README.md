@@ -4,9 +4,9 @@ React Schedule Job is a simple cron-like job scheduler for Reactjs. This module 
 
 [![NPM](https://img.shields.io/npm/v/react-schedule-job.svg)](https://www.npmjs.com/package/react-schedule-job) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-<!-- **User Guide** at [https://d180vcwahe2y6s.cloudfront.net/build/index.html](https://d180vcwahe2y6s.cloudfront.net/index.html)
+**User Guide** at [https://d3ulnom5ytgqb7.cloudfront.net/index.html](https://d3ulnom5ytgqb7.cloudfront.net/index.html)
 
-![Crontab Guide Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/cronGuide.png) -->
+![Crontab Guide Demo](https://raw.githubusercontent.com/shawnscoding/reactjs-crontab/HEAD/assets/cronGuide.png)
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ npm install --save react-schedule-job
 
 ## Usage 1
 
-To schedule component, this code would be useful
+To schedule component, this would be useful
 
 ```jsx
 import React from 'react'
@@ -76,7 +76,7 @@ Copying and pasting above code will render `<HelloMsg /> `
 
 ## Usage 2
 
-To schedule function, this code would be useful
+To schedule function, this would be useful
 
 ```jsx
 import React from 'react'
@@ -195,8 +195,7 @@ Schedule Props {
       fn: yourFn,
       id: '1',
       schedule: '* 11 18 10,13 *',
-      name: 'logUserOut',
-      description: 'Send API'
+      name: 'logUserOut'
     }
   ],
   timeZone: "UTC", "local" or "YOUR PREFERRED TIMEZONE",
@@ -214,8 +213,7 @@ Schedule.propTypes = {
       fn: PropTypes.func.isRequired,
       id: PropTypes.string.isRequired,
       schedule: PropTypes.string.isRequired,
-      name: PropTypes.string,
-      description: PropTypes.string
+      name: PropTypes.string
     })
   ),
   dashboard: PropTypes.shape({
@@ -236,7 +234,7 @@ Schedule.defaultProps = {
 
 ## Important note
 
-- Note that Schedule is triggered only once per minute. The seconds that is triggered is different everytime you run your reactjs app. It varies from 0s to 59s. This is because we don't schedule seconds. Thus, don't be surprised if it doesn't run as soon as the time condition met.
+- Note that Schedule component is active only once per minute. The seconds that this is active is different everytime you run your reactjs app. It varies from 0s to 59s. This is because we don't schedule seconds. Thus, don't be surprised if it doesn't run as soon as the time condition met.
 
 ## Supported browsers
 

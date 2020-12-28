@@ -30,7 +30,6 @@ Cron.propTypes = {
       id: PropTypes.string.isRequired,
       schedule: PropTypes.string.isRequired,
       name: PropTypes.string,
-      description: PropTypes.string
     })
   ),
   dashboard: PropTypes.shape({
