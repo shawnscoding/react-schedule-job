@@ -1,10 +1,26 @@
 {
-  "name": "react-cron",
+  "name": "react-schedule-job",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "description": "Cron-like job scheduler for Reactjs",
   "author": "shawnscoding",
   "license": "MIT",
-  "repository": "https://github.com/shawnscoding",
+  "keywords": [
+    "react",
+    "reactjs",
+    "crontab",
+    "cron",
+    "javascript cron",
+    "repetitive task",
+    "job scheduler",
+    "react cron",
+    "react crontab",
+    "react scheduler",
+    "react schedule"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shawnscoding/react-schedule-job"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -49,5 +65,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {}
 }

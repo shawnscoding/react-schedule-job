@@ -1,6 +1,6 @@
 {
-  "short_name": "react-cron",
-  "name": "react-cron",
+  "short_name": "react-schedule-job",
+  "name": "react-schedule-job",
   "icons": [
     {
       "src": "favicon.ico",
